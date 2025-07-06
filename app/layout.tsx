@@ -5,7 +5,9 @@ import Navbar from '@/components/navbar/Navbar';
 import Container from '@/components/global/Container';
 import Providers from './providers';
 import { ClerkProvider } from '@clerk/nextjs';
+import {Toaster} from "@/components/ui/sonner"
 const inter = Inter({ subsets: ['latin'] });
+
 
 export const metadata: Metadata = {
   title: 'Next Storefront',
@@ -25,6 +27,7 @@ export default function RootLayout({
             <Navbar />
             <Container className='py-20'>{children}</Container>
           </Providers>
+          <Toaster richColors position="top-right" />
         </body>
       </html>
     </ClerkProvider>
