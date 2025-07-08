@@ -11,6 +11,7 @@ const nextConfig: NextConfig = {
         hostname: 'images.pexels.com',
       },
     ],
+    domains: ['img.clerk.com'],
   },
 };
 
