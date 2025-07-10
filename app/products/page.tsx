@@ -1,15 +1,19 @@
-import ProductsContainer from "@/components/products/ProductsContainer";
-
-function ProductsPage({searchParams}: {searchParams:{layout?: string; search?: string}}) {
-
-    const layout = searchParams.layout || 'grid';
-    const search = searchParams.search || '';
-  return (
-    <div>
-        <ProductsContainer layout={layout} search={search} />
-      
-    </div>
-  )
+import ProductsContainer from '@/components/products/ProductsContainer';
+interface PageProps {
+   params: { id: string };
+  searchParams?: { layout?: string; search?: string };
 }
 
-export default ProductsPage
+function ProductsPage({ params, searchParams }: PageProps) {
+  void params;
+  const layout = searchParams?.layout || 'grid';
+  const search = searchParams?.search || '';
+
+  return (
+    <>
+      <ProductsContainer layout={layout} search={search} />
+    </>
+  );
+}
+
+export default ProductsPage;
