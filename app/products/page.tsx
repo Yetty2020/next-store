@@ -1,18 +1,15 @@
-import ProductsContainer from '@/components/products/ProductsContainer';
-interface PageProps {
-   params: { id: string };
-  searchParams?: { layout?: string; search?: string };
-}
+import ProductsContainer from "@/components/products/ProductsContainer";
 
-function ProductsPage({ params, searchParams }: PageProps) {
-  void params;
-  const layout = searchParams?.layout || 'grid';
-  const search = searchParams?.search || '';
-
+async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ layout?: string; search?: string }>;
+}) {
+  const { layout = "grid", search = "" } = await searchParams;
   return (
-    <>
+    <div>
       <ProductsContainer layout={layout} search={search} />
-    </>
+    </div>
   );
 }
 

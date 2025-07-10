@@ -27,8 +27,7 @@ function NavSearch() {
     if (!searchValue) {
       setSearch('');
     }
-  }, [searchParams]); //only depending on stable object
-
+  }, [searchParams]);
   return (
     <Input
       type='search'

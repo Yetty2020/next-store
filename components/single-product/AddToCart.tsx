@@ -1,7 +1,14 @@
 import { Link } from "lucide-react"
 import { Button } from "../ui/button"
 
-function AddToCart() {
+type AddToCartProps = {
+    productId: string;
+};
+
+function AddToCart( { productId }: AddToCartProps) {
+
+  console.log(productId);
+  
   return (
     <div>
         <Button >
