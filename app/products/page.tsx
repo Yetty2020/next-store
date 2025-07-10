@@ -1,15 +1,16 @@
 import ProductsContainer from "@/components/products/ProductsContainer";
 
-function ProductsPage({searchParams}: {searchParams:{layout?: string; search?: string}}) {
-
-    const layout = searchParams.layout || 'grid';
-    const search = searchParams.search || '';
+async function ProductsPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ layout?: string; search?: string }>;
+}) {
+  const { layout = "grid", search = "" } = await searchParams;
   return (
     <div>
-        <ProductsContainer layout={layout} search={search} />
-      
+      <ProductsContainer layout={layout} search={search} />
     </div>
-  )
+  );
 }
 
-export default ProductsPage
+export default ProductsPage;
