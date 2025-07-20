@@ -8,28 +8,27 @@ const isPublicRoute = createRouteMatcher([
   '/sign-in(.*)',
   '/sign-up(.*)',
   '/api(.*)',
-])
+]);
 
 export default clerkMiddleware(async (auth, req) => {
-  if (isPublicRoute(req)) {
-    return NextResponse.next()
+  try {
+    if (isPublicRoute(req)) {
+      return NextResponse.next();
+    }
+
+    const { userId } = await auth();
+
+    if (!userId) {
+      return NextResponse.redirect(new URL('/sign-in', req.url));
+    }
+
+    return NextResponse.next();
+  } catch (error) {
+    console.error('Middleware Error:', error);
+    return NextResponse.next(); // Or redirect to a generic error page
   }
-
-  const { userId } = await auth()
-
-  if (!userId) {
-    return NextResponse.redirect(new URL('/sign-in', req.url))
-  }
-
-  return NextResponse.next()
-},
-
-{ debug: true },)
+}, { debug: true });
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|images/|.*\\..*).*)",
-    // Always run for API routes
-    '/(api|trpc)(.*)',
-  ]
-}
+  matcher: ['/((?!_next).*)'], // Simplified for test
+};
