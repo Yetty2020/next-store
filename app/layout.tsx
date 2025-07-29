@@ -27,7 +27,7 @@ export default function RootLayout({
             <Navbar />
             <Container className='py-20'>{children}</Container>
           </Providers>
-          <Toaster richColors position="top-right" />
+          <Toaster />
         </body>
       </html>
     </ClerkProvider>

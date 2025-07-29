@@ -14,8 +14,14 @@ import { links } from '@/utils/Links';
 import UserIcon from './UserIcon';
 import SignOutLink from './SignOutLink';
 import { SignInButton, SignUpButton, SignedIn, SignedOut } from '@clerk/nextjs';
+import { useUser } from '@clerk/nextjs';
 
 function LinksDropdown() {
+
+  const { user } = useUser();
+
+  const isAdminUser = user?.id === process.env.NEXT_PUBLIC_ADMIN_USER_ID;
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -40,7 +46,10 @@ function LinksDropdown() {
         </SignedOut> 
         <SignedIn>
           {links.map((link) => {
+
+              if (link.label === 'dashboard' && !isAdminUser) return null;
             return (
+             
               <DropdownMenuItem key={link.href}>
                 <Link href={link.href} className='capitalize w-full'>
                   {link.label}
