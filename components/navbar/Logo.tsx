@@ -10,7 +10,7 @@ export default function Logo() {
        
             <Link href="/">
             
-             <h3 className="text-[#503C3C] sm:text-[1rem] text-[2rem] font-extrabold">Furnihome</h3>
+             <h3 className="">Westaniqla</h3>
             </Link>
            
 
