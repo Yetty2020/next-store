@@ -3,6 +3,7 @@ import { Input } from '../ui/input';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { useDebouncedCallback } from 'use-debounce';
 import { useState, useEffect } from 'react';
+import { CiSearch } from "react-icons/ci";
 
 function NavSearch() {
   const searchParams = useSearchParams();
@@ -29,16 +30,19 @@ function NavSearch() {
     }
   }, [searchParams]);
   return (
-    <Input
+    <div>
+      <Input
       type='search'
       placeholder='Have something youre looking for?'
-      className='max-w-xs dark:bg-muted border-0 bg-white rounded-md mt-4'
+      className='max-w-xs dark:bg-muted border-0 bg-white rounded-md mt-4 hidden'
       onChange={(e) => {
         setSearch(e.target.value);
         handleSearch(e.target.value);
       }}
       value={search}
     />
+    <CiSearch className='w-6 h-6 text-white cursor-pointer' />
+      </div>
   );
 }
 
