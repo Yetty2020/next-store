@@ -25,22 +25,22 @@ function LinksDropdown() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant='outline' className='flex gap-4 max-w-[100px]'>
+        <Button variant='outline' className='flex gap-4 max-w-[100px] text-[#503C3C]  border-2-[#503C3C] hover:bg-red-50  ' >
           <LuAlignLeft className='w-6 h-6' />
           <UserIcon />
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className='w-48' align='start' sideOffset={10}>
+      <DropdownMenuContent className='w-48 bg-[#FFF3E3] border-0' align='end' sideOffset={20}>
         <SignedOut>
           <DropdownMenuItem>
             <SignInButton mode='modal'>
-              <button className='w-full text-left'>Login</button>
+              <button className='w-full text-left text-[#503C3C]'>Login</button>
             </SignInButton>
           </DropdownMenuItem>
           <DropdownMenuSeparator />
           <DropdownMenuItem>
             <SignUpButton mode='modal'>
-              <button className='w-full text-left'>Register</button>
+              <button className='w-full text-left text-[#503C3C]'>Register</button>
             </SignUpButton>
           </DropdownMenuItem>
         </SignedOut> 
@@ -51,7 +51,7 @@ function LinksDropdown() {
             return (
              
               <DropdownMenuItem key={link.href}>
-                <Link href={link.href} className='capitalize w-full'>
+                <Link href={link.href} className='capitalize w-full text-[#503C3C] hover:bg-[#C5A178] px-1.5 py-2 rounded-md'>
                   {link.label}
                 </Link>
               </DropdownMenuItem>

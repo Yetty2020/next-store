@@ -7,19 +7,25 @@ import FavoriteToggleButton from "./FavoriteToggleButton";
 
 function ProductsGrid({ products }: { products: Product[] }) {
   return (
-    <div className="pt-12 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <div className=" grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-3 mx-auto">
       {products.map((product) => {
         const { name, price, image } = product;
         const productId = product.id;
+        const actualImage = image?.startsWith("http") || image?.startsWith("https")
+  ? image
+  : image?.startsWith("/images/") 
+    ? image 
+    : `/images/${image || "default.jpg"}`;
         const dollarsAmount = formatCurrency(price);
+        
         return (
           <article key={productId} className="group relative">
             <Link href={`/products/${productId}`}>
-              <Card className="transform group-hover:shadow-xl transition-shadow duration-500 border-gray-300">
-                <CardContent className="p-4">
-                  <div className="relative h-64 md:h-48 rounded overflow-hidden ">
+              <Card  className="border-0">
+                <CardContent className="py-2 px-4 border-0">
+                  <div className="relative h-64  ">
                     <Image
-                      src={image}
+                       src={actualImage}
                       alt={name}
                       fill
                       sizes="(max-width:768px) 100vw,(max-width:1200px) 50vw,33vw"
@@ -36,7 +42,7 @@ function ProductsGrid({ products }: { products: Product[] }) {
                 </CardContent>
               </Card>
             </Link>
-            <div className="absolute top-12 right-7 z-5 bg-white border border-gray-300">
+            <div className="absolute top-12 right-7 z-5 bg-white rounded-full border-0 ">
               <FavoriteToggleButton productId={productId} />
             </div>
           </article>

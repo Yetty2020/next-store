@@ -1,3 +1,4 @@
+import { fetchProductRating } from "@/utils/actions";
 import { FaStar } from "react-icons/fa";
 
 type ProductRatingProps = {
@@ -5,8 +6,7 @@ type ProductRatingProps = {
 };
 
 async function ProductRating({ productId }: ProductRatingProps) {
-  const rating = 4.2;
-  const count = 25;
+  const { rating, count } = await fetchProductRating(productId);
 
   console.log(productId);
 

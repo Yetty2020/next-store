@@ -37,7 +37,7 @@ function ProductsList({ products }: { products: Product[] }) {
                 </CardContent>
               </Card>
             </Link>
-            <div className='absolute bottom-8 right-8 z-5'>
+            <div className='absolute bottom-8 right-8 z-5 border-0'>
               <FavoriteToggleButton productId={productId} />
             </div>
           </article>

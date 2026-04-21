@@ -1,9 +1,23 @@
+'use client'
+
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { LuShoppingCart } from "react-icons/lu";
+import { fetchCartItems } from "@/utils/actions";
 
 export default function CartButton() {
-  const numItemsInCart = 9;
+  const [numItemsInCart, setNumItemsInCart] = useState(0);
+
+  useEffect(() => {
+    const getCartItems = async () => {
+      const items = await fetchCartItems();
+      setNumItemsInCart(items);
+    };
+
+    getCartItems();
+  }, []);
+
   return (
     <div>
       <Button

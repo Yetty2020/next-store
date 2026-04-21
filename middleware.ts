@@ -3,10 +3,10 @@ import { NextResponse } from 'next/server';
 
 const isPublicRoute = createRouteMatcher([
   '/', 
-  '/products(.*)', 
-  '/about', 
-  '/sign-in(.*)', 
-  '/sign-up(.*)',
+  '/about',
+  '/products(.*)',
+  '/sign-in(.*)',
+  '/sign-up(.*)'
 ]);
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)']);
@@ -15,22 +15,21 @@ export default clerkMiddleware(async (auth, req) => {
   console.log('✅ Middleware Running');
 
   if (!isPublicRoute(req)) {
-    await auth.protect(); // ✅ Enforces authentication
+    await auth.protect();
 
-    const { userId } = await auth(); // ✅ Get userId AFTER protect
-    const isAdminUser = userId === process.env.ADMIN_USER_ID;
+    const { userId } = await auth();
+    console.log('👤 userId:', userId);
+    console.log('🔐 ADMIN_USER_ID:', process.env.ADMIN_USER_ID);
 
-    console.log('👉 userId:', userId);
+    const isAdmin = userId === process.env.ADMIN_USER_ID;
 
-    if (isAdminRoute(req) && !isAdminUser) {
-      console.log('🚫 Non-admin tried to access admin route');
+    if (isAdminRoute(req) && !isAdmin) {
+      console.log('⛔ Non-admin trying to access admin route');
       return NextResponse.redirect(new URL('/', req.url));
     }
-  } else {
-    console.log('🔓 Public route — skipping auth.');
   }
 
-  return NextResponse.next(); // ✅ Required to continue
+  return NextResponse.next();
 });
 
 export const config = {

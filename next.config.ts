@@ -10,8 +10,13 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'images.pexels.com',
       },
+      {
+        protocol: 'https',
+        hostname: "**"
+      },
     ],
     domains: ['img.clerk.com'],
+    
   },
 };
 
